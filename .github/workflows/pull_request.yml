@@ -1,0 +1,17 @@
+name: 'build-test'
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  test: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses:  thomaseizinger/create-pull-request@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          head: ${{ github.ref }}
+          base: main
+          title: "PR title"
+          body: "> test body"
